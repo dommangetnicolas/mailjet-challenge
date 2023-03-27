@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  front:
+    container_name: front
+    build:
+      context: .
+      dockerfile: front.Dockerfile
+    tty: true
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./front:/app-front
+
+  back:
+    container_name: back
+    build:
+      context: .
+      dockerfile: back.Dockerfile
+    tty: true
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+    ports:
+      - '8000:8000'
+    depends_on:
+      - database
+    volumes:
+      - ./back:/app-back
+
+  database:
+    container_name: database
+    image: postgres:latest
+    tty: true
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - DATABASE_HOST=${DB_HOST}
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql

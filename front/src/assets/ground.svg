@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+  <linearGradient id="gradient" x2="-66" y1="114" spreadMethod="repeat" gradientUnits="userSpaceOnUse">
+      <stop/>
+      <stop offset=".4" stop-color="#0000"/>
+      <stop offset="1"/>
+  </linearGradient>
+  <filter id="filter">
+      <feTurbulence type="fractalNoise" baseFrequency=".07" numOctaves="9"/>
+      <feDisplacementMap in="SourceAlpha" scale="60"/>
+      <feDiffuseLighting surfaceScale="80" lighting-color="#9b7653">
+          <feDistantLight elevation="60"/>
+      </feDiffuseLighting>
+  </filter>
+  <rect x="-10%" y="-10%" width="120%" height="120%" fill="url(#gradient)" filter="url(#filter)"/>
+</svg>
