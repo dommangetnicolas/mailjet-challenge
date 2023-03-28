@@ -12,7 +12,7 @@ const LawnBed = styled.div<LawnProps>`
   background-position-x: center;
   display: flex;
   gap: 16px;
-  height: ${({ height }) => height || '100%'};
+  min-height: ${({ height }) => height || '100%'};
   justify-content: center;
   max-width: 600px;
   width: 100%;

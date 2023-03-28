@@ -6,6 +6,7 @@ export const EMPTY_GARDEN: Garden = {
   id: EMPTY_GARDEN_ID,
   name: '',
   lawns: [],
+  lawnItems: []
 };
 
 export const MAXIMUM_LAWNS = 5;

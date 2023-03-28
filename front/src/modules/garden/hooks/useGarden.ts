@@ -7,7 +7,7 @@ const useGarden = () => {
     useGardenContext();
 
   const onDropLawn = useCallback(
-    (fromLawn?: { id: string; position: 'before' | 'after' }) => {
+    (fromLawn?: { id: string; position: 'top' | 'bottom' }) => {
       setGarden((prevState) => {
         if ((prevState?.lawns?.length || 0) >= MAXIMUM_LAWNS) {
           return prevState;
@@ -28,11 +28,11 @@ const useGarden = () => {
             (newLawn) => newLawn.id === fromLawn.id
           );
 
-          if (fromLawnIndex && fromLawn?.position === 'before') {
-            newLawns.splice(fromLawnIndex, 0, newLawn);
+          if (fromLawnIndex !== undefined && fromLawn?.position === 'top') {
+            newLawnIndex = fromLawnIndex;
           }
 
-          if (fromLawnIndex && fromLawn?.position === 'after') {
+          if (fromLawnIndex !== undefined && fromLawn?.position === 'bottom') {
             newLawnIndex = fromLawnIndex + 1;
           }
         }
