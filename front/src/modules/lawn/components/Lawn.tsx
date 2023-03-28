@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import GrennLawn from '../assets/greenLawn.png';
+import GrennLawn from '../../../assets/greenLawn.png';
 
 type LawnProps = {
   height?: string

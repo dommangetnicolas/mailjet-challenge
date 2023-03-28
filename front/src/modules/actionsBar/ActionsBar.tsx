@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-
-import { DraggableBlock } from '../draggableItems/DraggableBlock';
-import {
-  DraggableLawn,
-  DraggablePlot,
-} from '../draggableItems/draggableSections';
+import DraggableItem from '../draggableItem/components/DraggableItem';
 
 import { InputName } from './InputName';
 import { SaveButton } from './SaveButton';
@@ -29,10 +24,10 @@ export function ActionsBar() {
     <BarContainer>
       <InputName />
       <ItemsContainer>
-        <DraggableLawn />
-        <DraggablePlot />
-        <DraggableBlock type="CARROT" />
-        <DraggableBlock type="TOMATO" />
+        <DraggableItem type="LAWN" />
+        <DraggableItem type="PLOT" />
+        <DraggableItem type="CARROT" />
+        <DraggableItem type="TOMATO" />
       </ItemsContainer>
       <SaveButton />
     </BarContainer>
