@@ -52,7 +52,7 @@ const LawnContainer: FunctionComponent<Props> = (props) => {
       }),
       drop: (item, monitor) => {
         if (monitor.getItemType() === 'PLOT') {
-          onDropPlot();
+          onDropPlot(hoverPosition.x);
         }
 
         if (monitor.getItemType() === 'LAWN') {

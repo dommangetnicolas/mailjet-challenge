@@ -12,31 +12,42 @@ const useLawn = (lawn: Lawn) => {
   }, [garden, lawn.id]);
 
   const maximumPlotsReached =
-    lawnItems?.filter((item) => item.type === 'PLOT' && item.lawnId === lawn.id)
-      .length >= MAXIMUM_PLOTS;
+    lawnItems?.filter((item) => item.lawnId === lawn.id).length >=
+    MAXIMUM_PLOTS;
 
-  const onDropPlot = useCallback(() => {
-    setGarden((prevState) => {
-      if (
-        prevState.lawnItems?.filter(
-          (item) => item.type === 'PLOT' && item.lawnId === lawn.id
-        ).length >= MAXIMUM_PLOTS
-      ) {
-        return prevState;
-      }
+  const onDropPlot = useCallback(
+    (position: 'right' | 'left') => {
+      setGarden((prevState) => {
+        if (
+          prevState.lawnItems?.filter((item) => item.lawnId === lawn.id)
+            .length >= MAXIMUM_PLOTS
+        ) {
+          return prevState;
+        }
 
-      const newLawnItems = [...prevState.lawnItems];
+        const newLawnItems = [...prevState.lawnItems];
+        const existingLawnItemIndex = newLawnItems?.findIndex(
+          (x) => x.lawnId === lawn.id
+        );
 
-      newLawnItems.push({
-        id: new Date().getTime().toString(),
-        lawnId: lawn.id,
-        type: 'PLOT',
-        position: 1,
+        newLawnItems.splice(
+          position === 'left'
+            ? existingLawnItemIndex
+            : existingLawnItemIndex + 1,
+          0,
+          {
+            id: new Date().getTime().toString(),
+            lawnId: lawn.id,
+            type: 'PLOT',
+            position: 1,
+          }
+        );
+
+        return { ...prevState, lawnItems: newLawnItems };
       });
-
-      return { ...prevState, lawnItems: newLawnItems };
-    });
-  }, [lawn.id, setGarden]);
+    },
+    [lawn.id, setGarden]
+  );
 
   return { maximumPlotsReached, onDropPlot, lawnItems };
 };
