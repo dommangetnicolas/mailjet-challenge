@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import DraggableItem from '../draggableItem/components/DraggableItem';
 
-import { InputName } from './InputName';
-import { SaveButton } from './SaveButton';
+import { GardenName } from '../garden/components/GardenName';
+import GardenSave from '../garden/components/GardenSave';
 
 const BarContainer = styled.div`
   align-items: center;
@@ -22,14 +22,14 @@ const ItemsContainer = styled.div`
 export function ActionsBar() {
   return (
     <BarContainer>
-      <InputName />
+      <GardenName />
       <ItemsContainer>
         <DraggableItem type="LAWN" />
         <DraggableItem type="PLOT" />
         <DraggableItem type="CARROT" />
         <DraggableItem type="TOMATO" />
       </ItemsContainer>
-      <SaveButton />
+      <GardenSave />
     </BarContainer>
   );
 }

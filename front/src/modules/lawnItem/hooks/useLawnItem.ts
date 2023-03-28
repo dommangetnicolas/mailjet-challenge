@@ -4,8 +4,7 @@ import { LawnItem } from '../types/LawnItem';
 import { LawnItemType } from '../types/LawnItemType';
 
 const useLawnItem = (item: LawnItem) => {
-  const { setCurrentGarden: setGarden } =
-    useGardenContext();
+  const { setCurrentGarden: setGarden } = useGardenContext();
 
   const onDropItem = useCallback(
     (type: LawnItemType) => {

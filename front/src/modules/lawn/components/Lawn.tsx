@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import GrennLawn from '../../../assets/greenLawn.png';
 
 type LawnProps = {
-  height?: string
+  height?: string;
 };
 
 const LawnBed = styled.div<LawnProps>`
   align-items: flex-end;
-  background-image:url(${GrennLawn});
+  background-image: url(${GrennLawn});
   background-position-x: center;
   display: flex;
   gap: 16px;

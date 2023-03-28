@@ -29,7 +29,7 @@ export function Garden() {
       if (!monitor.isOver({ shallow: true })) {
         return;
       }
-      
+
       onDropLawn();
     },
   }));

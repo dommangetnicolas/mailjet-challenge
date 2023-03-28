@@ -11,6 +11,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 	_ "github.com/lib/pq"
 )
 
@@ -179,7 +180,7 @@ func getGarden(w http.ResponseWriter, r *http.Request) {
 			log.Fatal(err)
 		}
 
-		itemRows, err := db.Query("SELECT id, type, position FROM lawnitems WHERE lawn_id = $1", lawn.ID)
+		itemRows, err := db.Query("SELECT id, type, position, lawn_id FROM lawnitems WHERE lawn_id = $1", lawn.ID)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -187,7 +188,7 @@ func getGarden(w http.ResponseWriter, r *http.Request) {
 
             for itemRows.Next() {
                 item := LawnItem{}
-                err := itemRows.Scan(&item.ID, &item.Type, &item.Position)
+                err := itemRows.Scan(&item.ID, &item.Type, &item.Position, &item.LawnID)
                 if err != nil {
 					log.Fatal(err)
 				}
@@ -209,7 +210,8 @@ func main() {
 
 	http.Handle("/", r)
 
-	http.ListenAndServe(":8000", nil)
+	handler := cors.Default().Handler(r)
+	http.ListenAndServe(":8000", handler)
 }
 
 func checkError(err error) {

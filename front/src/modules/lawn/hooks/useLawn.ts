@@ -1,4 +1,5 @@
 import { useCallback, useMemo } from 'react';
+import generateId from '../../../utils/generateId';
 import useGardenContext from '../../garden/hooks/useGardenContext';
 import { MAXIMUM_PLOTS } from '../LawnConstants';
 import { Lawn } from '../types/Lawn';
@@ -36,7 +37,7 @@ const useLawn = (lawn: Lawn) => {
             : existingLawnItemIndex + 1,
           0,
           {
-            id: new Date().getTime().toString(),
+            id: generateId(),
             lawnId: lawn.id,
             type: 'PLOT',
             position: 1,

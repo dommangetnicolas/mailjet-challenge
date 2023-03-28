@@ -28,7 +28,7 @@ const Container = styled.div`
 
 const Message = styled.div<{ show: boolean; color: 'danger' | 'success' }>`
   background-color: ${({ color }) => {
-    return color === "danger" ? '#e74c3c' : '#2ecc71';
+    return color === 'danger' ? '#e74c3c' : '#2ecc71';
   }};
   color: #fff;
   padding: 8px 20px;
