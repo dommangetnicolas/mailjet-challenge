@@ -7,3 +7,5 @@ export const EMPTY_GARDEN: Garden = {
   name: '',
   lawns: [],
 };
+
+export const MAXIMUM_LAWNS = 5;

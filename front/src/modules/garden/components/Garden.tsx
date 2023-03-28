@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Ground from '../../../assets/ground.svg';
 import LawnContainer from '../../lawn/components/LawnContainer';
+import { MAXIMUM_LAWNS } from '../GardenConstants';
 import useGarden from '../hooks/useGarden';
 import Shovel from './Shovel';
 
@@ -33,7 +34,7 @@ export function Garden() {
   return (
     <div ref={drop}>
       <Land>
-        {isHovering && <Shovel />}
+        {(garden?.lawns?.length || 0) < MAXIMUM_LAWNS && isHovering && <Shovel />}
 
         {garden?.lawns?.map((lawn) => (
           <LawnContainer key={lawn.id} lawn={lawn} />
