@@ -18,15 +18,18 @@ const Land = styled.div`
 `;
 
 export function Garden() {
-  const { garden } = useGarden();
+  const { garden, onDropLawn } = useGarden();
 
-  const { onDropLawn } = useGarden();
   const [{ isHovering }, drop] = useDrop(() => ({
     accept: 'LAWN',
     collect: (monitor) => ({
-      isHovering: monitor.canDrop() && monitor.isOver(),
+      isHovering: monitor.canDrop() && monitor.isOver({ shallow: true }),
     }),
     drop: (item, monitor) => {
+      if (!monitor.isOver({ shallow: true })) {
+        return;
+      }
+      
       onDropLawn();
     },
   }));
@@ -34,11 +37,13 @@ export function Garden() {
   return (
     <div ref={drop}>
       <Land>
-        {(garden?.lawns?.length || 0) < MAXIMUM_LAWNS && isHovering && <Shovel />}
-
         {garden?.lawns?.map((lawn) => (
           <LawnContainer key={lawn.id} lawn={lawn} />
         ))}
+
+        {(garden?.lawns?.length || 0) < MAXIMUM_LAWNS && isHovering && (
+          <Shovel />
+        )}
       </Land>
     </div>
   );
